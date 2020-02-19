@@ -14,7 +14,7 @@ export default function App() {
             <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
-        <Route path="/" render={() => <h1>Welcome!!</h1>} />
+        <Route path="/" component={Home} />
       </main>
     </Router>
   );
