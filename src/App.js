@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import './index.css';
 
 import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function App() {
   const name = "Poushita Guha";
@@ -53,14 +54,17 @@ const About = ({ match: { params: { name } } }) => (
 );
 
 // Contact Page 
-const Contact = ({ history }) => (
-  //props.history.push
-  <Fragment>
-    <h1>Contact</h1>
-    <button onClick={() => history.push('/')} >Go to Home</button>
-    <FakeText />
-  </Fragment>
-);
+const Contact = () => {
+  const history = useHistory();
+  return (
+    //props.history.push
+    <Fragment>
+      <h1>Contact</h1>
+      <button onClick={() => history.push('/')} >Go to Home</button>
+      <FakeText />
+    </Fragment>
+  )
+};
 
 const FakeText = () => (
   <p>
