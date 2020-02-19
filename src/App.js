@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-ro
 
 export default function App() {
   const name = "Poushita Guha";
+  const isAuthenticated = true;
 
   return (
     <Router>
@@ -18,9 +19,15 @@ export default function App() {
         </nav>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/about/:name" component={About} />
-          <Route path="/contact" component={Contact} />
-          <Route render={() => <h1>404: page not found</h1>} />
+          {
+            isAuthenticated ?
+              <>
+                <Route exact path="/about/:name" component={About} />
+                <Route exact path="/contact" component={Contact} />
+              </>
+              :
+              <Redirect to="/" />
+          }
         </Switch>
       </main>
     </Router>
