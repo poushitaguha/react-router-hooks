@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-ro
 
 export default function App() {
   const name = "Poushita Guha";
+
   return (
     <Router>
       <main>
@@ -19,6 +20,7 @@ export default function App() {
           <Route exact path="/" component={Home} />
           <Route path="/about/:name" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route render={() => <h1>404: page not found</h1>} />
         </Switch>
       </main>
     </Router>
