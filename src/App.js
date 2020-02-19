@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import './index.css';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 export default function App() {
   return (
@@ -15,9 +15,11 @@ export default function App() {
           </ul>
         </nav>
 
-        <Route path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+        </Switch>
 
       </main>
     </Router>
