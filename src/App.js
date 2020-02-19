@@ -4,23 +4,22 @@ import './index.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 export default function App() {
+  const name = "Poushita Guha";
   return (
     <Router>
       <main>
         <nav>
           <ul>
             <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
+            <li><Link to={`/about/${name}`}>About</Link></li>
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </nav>
-
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Route path="/about/:name" component={About} />
           <Route path="/contact" component={Contact} />
         </Switch>
-
       </main>
     </Router>
   );
@@ -35,9 +34,10 @@ const Home = () => (
 );
 
 // About Page 
-const About = () => (
+const About = ({ match: { params: { name } } }) => (
+  // props.match.params.name
   <Fragment>
-    <h1>About</h1>
+    <h1>About {name}</h1>
     <FakeText />
   </Fragment>
 );
