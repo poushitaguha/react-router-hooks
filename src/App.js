@@ -1,8 +1,7 @@
 import React, { Fragment } from 'react';
 import './index.css';
 
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect, useHistory, useParams } from 'react-router-dom';
 
 export default function App() {
   const name = "Poushita Guha";
@@ -23,8 +22,8 @@ export default function App() {
           {
             isAuthenticated ?
               <>
-                <Route exact path="/about/:name" component={About} />
-                <Route exact path="/contact" component={Contact} />
+                <Route path="/about/:name" component={About} />
+                <Route path="/contact" component={Contact} />
               </>
               :
               <Redirect to="/" />
@@ -44,14 +43,17 @@ const Home = () => (
 );
 
 // About Page 
-const About = ({ match: { params: { name } } }) => (
-  // props.match.params.name
-  <Fragment>
-    {name !== "Poushita Guha" ? <Redirect to="/" /> : null}
-    <h1>About {name}</h1>
-    <FakeText />
-  </Fragment>
-);
+const About = () => {
+  const { name } = useParams();
+  return (
+    // props.match.params.name
+    <Fragment>
+      {name !== "Poushita Guha" ? <Redirect to="/" /> : null}
+      <h1>About {name}</h1>
+      <FakeText />
+    </Fragment>
+  )
+};
 
 // Contact Page 
 const Contact = () => {
